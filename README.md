@@ -16,7 +16,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
-- This app requires Expo Go.(recommended for low-end devices) application if you don't have Android Studio.
+- This app requires Expo Go.
   - Download the latest version of the Expo Go. from playstore/appstore.
   - Open the application and run the server
   - Scan the QR Code through the mobile application.
