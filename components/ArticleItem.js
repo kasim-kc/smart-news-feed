@@ -1,5 +1,4 @@
-import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function ArticleItem({ item }) {
   return (
@@ -7,21 +6,44 @@ export default function ArticleItem({ item }) {
       {item.urlToImage && (
         <Image source={{ uri: item.urlToImage }} style={styles.image} />
       )}
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.desc}>{item.description}</Text>
+      <View style={styles.content}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.desc}>{item.description}</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    margin: 10,
-    padding: 10,
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderRadius: 12,
+    marginHorizontal: 16,
+    marginVertical: 10,
+    overflow: "hidden",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
     elevation: 3,
   },
-  image: { height: 150, borderRadius: 10 },
-  title: { fontWeight: "bold", marginVertical: 5 },
-  desc: { color: "#444" },
+  image: {
+    width: "100%",
+    height: 180,
+  },
+  content: {
+    padding: 14,
+  },
+  title: {
+    fontSize: 17,
+    fontWeight: "600",
+    color: "#1e1e1e",
+    marginBottom: 6,
+  },
+  desc: {
+    fontSize: 14,
+    color: "#444",
+    lineHeight: 20,
+  },
 });
+
