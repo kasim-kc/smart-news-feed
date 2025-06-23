@@ -1,19 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import NetInfo from "@react-native-community/netinfo";
+import { useEffect, useState } from "react";
 import {
-  FlatList,
-  SafeAreaView,
   ActivityIndicator,
+  FlatList,
   RefreshControl,
+  SafeAreaView,
+  StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
-import NetInfo from "@react-native-community/netinfo";
 
 import ArticleItem from "../components/ArticleItem";
 import SkeletonLoader from "../components/SkeletonLoader";
 import { fetchArticles } from "../utils/api";
-import { saveArticles, loadArticles } from "../utils/storage";
+import { loadArticles, saveArticles } from "../utils/storage";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
@@ -78,17 +79,20 @@ export default function App() {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1, marginTop: "25", marginBottom: "30" }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        marginTop: "25",
+        marginBottom: "30",
+        backgroundColor: "#f9f9f9",
+      }}
+    >
+      <Text style={styles.header}>Top Headlines</Text>
       <TextInput
         placeholder="Search articles..."
         value={search}
         onChangeText={handleSearch}
-        style={{
-          padding: 10,
-          margin: 10,
-          backgroundColor: "#eee",
-          borderRadius: 8,
-        }}
+        style={styles.searchBar}
       />
       {intialLoading ? (
         renderSkeleton()
@@ -113,3 +117,30 @@ export default function App() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "700",
+    marginTop: 10,
+    marginLeft: 16,
+    marginBottom: 10,
+    color: "#222",
+  },
+  searchBar: {
+    backgroundColor: "#fff",
+    marginHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    fontSize: 15,
+    shadowColor: "#ccc",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+    marginBottom: 10,
+  },
+});
+
